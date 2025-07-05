@@ -940,7 +940,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   display: flex;
   align-items: center;
   color: var(--sandy-brown);
-  font-size: 13px;
+  font-size: 5px;
   padding: 4px 0;
 }
 
@@ -952,7 +952,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 
 .sidebar .price-box del {
   color: var(--sonic-silver);
-  font-size: 13px;
+  font-size: 5px;
 }
 
 .sidebar .price-box .price {
@@ -1029,13 +1029,13 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .product-minimal .price {
-  font-size: var(--fs-7);
+  font-size: var(--fs-4);
   font-weight: var(--weight-700);
   color: var(--salmon-pink);
 }
 
 .product-minimal .price-box del {
-  font-size: var(--fs-9);
+  font-size: var(--fs-5);
   color: var(--sonic-silver);
 }
 
