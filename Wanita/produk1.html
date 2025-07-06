@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stylique - eCommerce Website</title>
+
+  <link rel="shortcut icon" href="/assets/images/logo/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+<style>
+.product-main { margin-bottom: 30px; }
+.title {
+    padding: 0 20px;
+    font-size: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minimax(250px, 1fr));
+  gap: 25px;
+  padding: 0 20px;
+}
+
+.product-grid .showcase {
+  border: 1px solid var(--cultured);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition: var(--transition-timing);
+}
+
+.showcase-rating-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.showcase-rating {
+  color: var(--sandy-brown); /* warna bintang */
+  font-size: 16px;
+  display: flex;
+}
+
+.rating-text {
+  font-size: 13px;
+  color: var(--sonic-silver); /* abu muda */
+  margin: 0;
+}
+
+.product-grid .showcase:hover { box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1); }
+
+.product-grid .showcase-banner { position: relative; }
+
+.product-grid .product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-timing);
+}
+
+.product-grid .product-img.default {
+  position: relative;
+  z-index: 1;
+}
+
+.product-grid .product-img.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+.product-grid .showcase:hover .product-img.hover { opacity: 1; }
+
+.product-grid .showcase:hover .product-img.default { opacity: 0; }
+
+.product-grid .showcase:hover .product-img { transform: scale(1.1); }
+
+.product-grid .showcase-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: var(--sandy-brown);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-500);
+  color: var(--white);
+  padding: 0 8px;
+  border-radius: var(--border-radius-sm);
+  z-index: 3;
+}
+
+.product-grid .showcase-badge.angle {
+  top: 8px;
+  left: -29px;
+  transform: rotate(-45deg);
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 5px 40px;
+}
+
+.product-grid .showcase-badge.black { background: var(--eerie-black); }
+
+.product-grid .showcase-badge.pink { background: var(--salmon-pink); }
+
+.product-grid .showcase-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  transform: translateX(50px);
+  transition: var(--transition-timing);
+  z-index: 3;
+}
+
+.product-grid .showcase:hover .showcase-actions { transform: translateX(0); }
+
+.product-grid .btn-action {
+  background: var(--white);
+  color: var(--sonic-silver);
+  margin-bottom: 5px;
+  border: 1px solid var(--cultured);
+  padding: 5px;
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-timing);
+}
+
+.product-grid .btn-action:hover {
+  background: var(--eerie-black);
+  color: var(--white);
+  border-color: var(--eerie-black);
+}
+
+.product-grid .showcase-content { padding: 15px 20px 0; }
+
+.product-grid .showcase-category {
+  color: var(--salmon-pink);
+  font-size: var(--fs-9);
+  font-weight: var(--weight-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.product-grid .showcase-title {
+  color: var(--eerie-black);
+  font-size: var(--fs-8);
+  font-weight: var(--weight-300);
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  transition: var(--transition-timing);
+}
+
+.product-grid .showcase-title:hover { color: var(--eerie-black); }
+
+.product-grid .showcase-rating {
+  display: flex;
+  color: var(--sandy-brown);
+  margin-bottom: 10px;
+}
+
+.product-grid .price-box {
+  display: flex;
+  gap: 10px;
+  font-size: 9px;
+  color: var(--eerie-black);
+  margin-bottom: 10px;
+}
+
+.product-grid .price { 
+    font-weight: var(--weight-700); 
+    font-size: 13px;
+}
+
+.product-grid del { color: var(--sonic-silver); }
+
+.product-name {
+  font-size: 13px;
+  margin: 4px 0;
+  color: var(--eerie-black);
+}
+
+.price-new {
+  font-weight: 700;
+  color: var(--bittersweet);
+  margin-right: 6px;
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: var(--bittersweet);
+  font-size: 13px;
+}
+
+.color-selection label {
+     font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+    
+.size-selection label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+
+    .color-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background-size: cover;
+      cursor: pointer;
+    }
+
+    .color-circle.selected {
+      border: 2px solid black;
+    }
+
+    .color-name {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .size-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .size-btn {
+      border: 1px solid #aaa;
+      padding: 8px 12px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .size-btn.selected {
+      background: black;
+      color: white;
+      border-color: black;
+    }
+
+    .size-info {
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+     .quantity-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: #eee;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .qty-number {
+      font-size: 16px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .add-to-cart {
+      background-color: black;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .stock-info {
+      font-size: 13px;
+      color: red;
+      margin-bottom: 15px;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+  <div class="notification-toast" data-toast>
+
+    <div class="toast-banner">
+      <img src="/assets/images/products/jewellery-1.jpg" alt="Rose Gold Earrings" width="80" height="70">
+    </div>
+
+    <div class="toast-detail">
+
+      <p class="toast-message">
+        Someone in new just bought
+      </p>
+
+      <p class="toast-title">
+        Rose Gold Earrings
+      </p>
+
+      <p class="toast-meta">
+        <time datetime="PT2M">2 Minutes</time> ago
+      </p>
+
+    </div>
+
+  </div>
+
+  <header>
+
+    <div class="header-top">
+
+      <div class="container">
+
+        <div class="header-alert-news">
+          <p>
+            <b>Free Shipping</b>
+            This Week Order Over - $55
+          </p>
+        </div>
+
+        <div class="header-top-actions">
+
+          <select name="language">
+            <option value="en-US">Indonesia</option>
+            <option value="en-US">English</option>
+            <option value="es-ES">Espa&ntilde;ol</option>
+            <option value="fr">Fran&ccedil;ais</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="header-main">
+
+      <div class="container">
+
+        <a href="#" class="header-logo">
+          <img src="/assets/images/logo/logo.svg" alt="Anon's logo" width="120" height="36">
+        </a>
+
+        <div class="header-search-container">
+
+          <input type="search" name="search" class="search-field" placeholder="Cari produk kamu...">
+
+          <button class="search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+
+        </div>
+
+        <div class="header-user-actions">
+
+          <button class="action-btn">
+            <ion-icon name="person-outline"></ion-icon>
+          </button>
+
+          <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+
+          <button class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <nav class="desktop-navigation-menu">
+
+      <div class="container">
+
+        <ul class="desktop-menu-category-list">
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Home</a>
+          </li>
+
+         <li class="menu-category">
+            <a href="#" class="menu-title">Pria</a>
+
+            <ul class="dropdown-list">
+
+             <li class="dropdown-item">
+                <a href="#" data-kategori="atasan">Atasan</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Celana Panjang & Celana Pendek</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Hoodie</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Jacket</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Jeans</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Kemeja</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">T-Shirt</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Wanita</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="atasan">Atasan</a>
+              </li>
+             
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="blazer">Blazer</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="celana">Celana Panjang & Celana Pendek</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Wanita" data-kategori="dress">Dress</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Wanita" data-kategori="jaket">Jaket</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="blazer">Jeans</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="kemeja">Kemeja</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Wanita" data-kategori="rok">Rok</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Wanita" data-kategori="tshirt">T-Shirt</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Anak</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="atasan">Atasan</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="bajumuslim">Baju Muslim</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="cardigans">Cardigans</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="celanapanjang">Celana Panjang & Celana Pendek</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="jaket">Jaket</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="jeans">Jeans</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Anak" data-kategori="tshirt">T-Shirt</a>
+              </li>
+
+            </ul>
+          </li>
+
+            <li class="menu-category">
+            <a href="#" class="menu-title">Sport</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="baju">Baju</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="celana">Celana</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="kaos">Kaos</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="kaos kaki">Kaos Kaki</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="sepatubasket">Sepatu Basket</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="sepatufutsal">Sepatu Futsal</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="sepatulari">Sepatu Lari</a>
+              </li>
+
+                <li class="dropdown-item">
+                <a href="#" data-folder="Sport" data-kategori="singlet">Singlet</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Perhiasan</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Perhiasan" data-kategori="anting">Anting</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Perhiasan" data-kategori="cincin">Cincin</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Perhiasan" data-kategori="kalung">Kalung</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Perhiasan" data-kategori="gelang">Gelang</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Parfum</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#" data-folder="Parfum" data-kategori="parfumpria">Parfum Pria</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#"data-folder="Parfum" data-kategori="parfumwanita">Parfum Wanita</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Blog</a>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">Hot Offers</a>
+          </li>
+
+        </ul>
+      </li>
+      </div>
+
+    </nav>
+
+    <div class="mobile-bottom-navigation">
+
+      <button class="action-btn" data-mobile-menu-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="bag-handle-outline"></ion-icon>
+
+        <span class="count">0</span>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="home-outline"></ion-icon>
+      </button>
+
+      <button class="action-btn">
+        <ion-icon name="heart-outline"></ion-icon>
+
+        <span class="count">0</span>
+      </button>
+
+      <button class="action-btn" data-mobile-menu-open-btn>
+        <ion-icon name="grid-outline"></ion-icon>
+      </button>
+
+    </div>
+
+    <nav class="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+
+      <div class="menu-top">
+        <h2 class="menu-title">Menu</h2>
+
+        <button class="menu-close-btn" data-mobile-menu-close-btn>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <ul class="mobile-menu-category-list">
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Home</a>
+        </li>
+
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Pria</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Atasan</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Celana Panjang & Celana Pendek</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Hoodie</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Jaket</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Jeans</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Kemeja</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">T-Shirt</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Wanita</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Atasan</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Blazer</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Celana Panjang & Celana Pendek</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Jaket</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Jeans</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+         <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Anak</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Atasan</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Baju Muslim</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Cardigans</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Celana Panjang & Celana Pendek</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+         <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Sport</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Baju</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Celana</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Kaos</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Kaos Kaki</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Perhiasan</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Anting</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Cincin</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Kalung</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Gelang</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+
+          <button class="accordion-menu" data-accordion-btn>
+            <p class="menu-title">Parfum</p>
+
+            <div>
+              <ion-icon name="add-outline" class="add-icon"></ion-icon>
+              <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+            </div>
+          </button>
+
+          <ul class="submenu-category-list" data-accordion>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Parfum Pria</a>
+            </li>
+
+            <li class="submenu-category">
+              <a href="#" class="submenu-title">Parfum Wanita</a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Blog</a>
+        </li>
+
+        <li class="menu-category">
+          <a href="#" class="menu-title">Hot Offers</a>
+        </li>
+
+      </ul>
+
+      <div class="menu-bottom">
+
+        <ul class="menu-category-list">
+
+          <li class="menu-category">
+
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">Language</p>
+
+              <ion-icon name="caret-back-outline" class="caret-back"></ion-icon>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">English</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+              </li>
+
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">Fren&ccedil;h</a>
+              </li>
+
+            </ul>
+
+          </li>
+
+        </ul>
+
+        <ul class="menu-social-container">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+  <main>
+ <div class="product-detail-container">
+
+  <!-- GALERI PRODUK -->
+  <div class="product-gallery">
+    <img src="../assets/images/wanita/aw1.avif" id="mainImage" alt="Blus Rayon | Garis">
+    <div class="thumbnail-list">
+      <img src="../assets/images/wanita/aw1.avif" class="active" onclick="changeImage(this)">
+      <img src="../assets/images/wanita/aw5.avif" onclick="changeImage(this)">
+      <img src="../assets/images/wanita//aw3.avif" onclick="changeImage(this)">
+      <img src="../assets/images/wanita/aw4.avif" onclick="changeImage(this)">
+    </div>
+  </div>
+
+  <!-- INFORMASI PRODUK -->
+  <div class="product-info">
+   <h3 class="showcase-title">Blus Rayon | Garis</h3>
+
+<div class="showcase-rating-box">
+  <div class="showcase-rating">
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+  </div>
+  <p class="rating-text">4,9 rb | 5 penilaian</p>
+</div>
+
+
+    <div class="price-section">
+      <span class="price-new">Rp399.900</span>
+      <span class="price-old">Rp499.000</span>
+      <span class="discount">-50%</span>
+    </div>
+
+    <div class="shipping">
+      🚚 <strong>Pengiriman:</strong> Estimasi tiba 9–11 Juli
+    </div>
+
+    <div class="guarantee">
+      🛡️ Bebas Pengembalian · COD · Proteksi Kerusakan
+    </div>
+
+    <br>
+   
+    <div class="color-selection">
+    <label>Warna:</label>
+    <div class="color-options">
+      <div class="color-circle" style="background-image: url('../assets/images/wanita/warna1.png')"></div>
+      <div class="color-circle selected" style="background-image: url('../assets/images/wanita/warna2.png')"></div>
+    </div>
+    <p class="color-name">60 LIGHT BLUE</p>
+  </div>
+
+  <div class="size-selection">
+    <label>Ukuran:</label>
+    <div class="size-options">
+      <button class="size-btn">XS</button>
+      <button class="size-btn selected">S</button>
+      <button class="size-btn">M</button>
+      <button class="size-btn">L</button>
+      <button class="size-btn">XL</button>
+      <button class="size-btn">XXL</button>
+      <button class="size-btn">3XL</button>
+    </div>
+
+    <!-- Tambah jumlah -->
+  <div class="quantity-control">
+    <button class="qty-btn">-</button>
+    <span class="qty-number">1</span>
+    <button class="qty-btn">+</button>
+  </div>
+
+  <!-- Tambah ke keranjang -->
+  <button class="add-to-cart">TAMBAHKAN KE KERANJANG</button>
+</div>
+</div>
+</div>
+
+<div class="product-main">
+  <h2 class="title">Pilihan Lainya</h2>
+  <div class="product-grid">
+
+    <!-- Start Product Card Template -->
+    <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw6.avif" alt="Blus Rayon Kerah Shipper " class="product-img default" width="300">
+         
+
+          <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Atasan</span>
+          <h3 class="showcase-title">Blus Rayon Kerah Skipper</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 399.000</p>
+            <del>Rp 299.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+   
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw7.avif" alt="Kemeja Linen" class="product-img default" width="300">
+
+          <p class="showcase-badge">10%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Atasan</span>
+          <h3 class="showcase-title">Kemeja Linen</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 399.000</p>
+            <del>Rp 499.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw8.avif" alt="Atasan Crop Bra Rib" class="product-img default" width="300">
+            
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Atasan</span>
+          <h3 class="showcase-title">Atasan Crop Bra Rib</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 299.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw9.avif" alt="AIRism Atasan Bra Tanpa Lengan" class="product-img default" width="300">
+
+            <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        
+
+        <div class="showcase-content">
+          <span class="showcase-category">Atasan</span>
+          <h3 class="showcase-title">AIRism Atasan Bra Tanpa Lengan</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 199.900</p>
+            <del>249.900</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw12.avif" alt="Mens Winter Leathers Jackets" class="product-img default" width="300">
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Atasan</span>
+          <h3 class="showcase-title">T-Shirt Mini (Crop Top)</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 149.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw14.avif" alt="Rok Cocoon Katun Motif" class="product-img default" width="300">
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Rok</span>
+          <h3 class="showcase-title">Rok Cocoon Katun Motif</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">$48.00</p>
+            <del>$75.00</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw13.avif" alt="Rok Midi Lipit Leba" class="product-img default" width="300">
+
+          <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Rok</span>
+          <h3 class="showcase-title">Rok Midi Lipit Lebar</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 499.900</p>
+            <del>Rp 559.900</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw15.avif" alt="Gaun Nilon" class="product-img default" width="300">
+
+          <p class="showcase-badge">NEW</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Dress</span>
+          <h3 class="showcase-title">Gaun Nilon</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 600.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw16.avif" alt="Jeans Curve Baggy" class="product-img default" width="300">
+
+          <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Jeans</span>
+          <h3 class="showcase-title">Jeans Curve Baggy</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 599.900</p>
+            <del>Rp 549.900</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw17.avif" alt="Celana Panjang Jeans Lebar" class="product-img default" width="300">
+
+          <p class="showcase-badge">LIMITED</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Jeans</span>
+          <h3 class="showcase-title">Celana Panjang Jeans Lebar</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 499.000</p>
+            <del>Rp 599.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw18.avif" alt="Jaket Brushed Jersey" class="product-img default" width="300">
+
+          <p class="showcase-badge">NEW</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Blazer</span>
+          <h3 class="showcase-title">Jaket Brushed Jersey</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 899.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw19.avif" alt="AIRism Jaket Hoodie Ritsleting Proteksi Sinar UV" class="product-img default" width="300">
+
+          <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Jaket</span>
+          <h3 class="showcase-title">AIRism Jaket Hoodie Ritsleting Proteksi Sinar UV</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 299.900</p>
+            <del>Rp 399.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/a20.avif" alt="Celana Rileks Katun Ankle" class="product-img default" width="300">
+
+          <p class="showcase-badge">LIMITED</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Celana</span>
+          <h3 class="showcase-title">Celana Rileks Katun Ankle</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 199.000</p>
+            <del>Rp 299.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw21.avif" alt="T-Shirt Waffle" class="product-img default" width="300">
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">T-Shirt</span>
+          <h3 class="showcase-title">T-Shirt Waffle</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 169.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw22.avif" alt="Gaun Lengan Volume" class="product-img default" width="300">
+
+          <p class="showcase-badge">LIMITED</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Dress</span>
+          <h3 class="showcase-title">Gaun Lengan Volume</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 499.000</p>
+            <del>Rp 499.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw23.avif" alt="T-Shirt Crop Top" class="product-img default" width="300">
+
+          <p class="showcase-badge">15%</p>
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">T-Shirt</span>
+          <h3 class="showcase-title">T-Shirt Crop Top</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 99.000</p>
+            <del>Rp 149.000</del>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw24.avif" alt="Jaket Ultra Light Down" class="product-img default" width="300">
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Jaket</span>
+          <h3 class="showcase-title">Jaket Ultra Light Down</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 999.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+     <div class="showcase">
+      <a href="produk-detail.html">
+        <div class="showcase-banner">
+          <img src="../assets/images/wanita/aw25.avif" alt="Celana Sweet Dry Curve" class="product-img default" width="300">
+
+          <div class="showcase-actions">
+            <button class="btn-action"><ion-icon name="heart-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="eye-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="repeat-outline"></ion-icon></button>
+            <button class="btn-action"><ion-icon name="bag-add-outline"></ion-icon></button>
+          </div>
+        </div>
+
+        <div class="showcase-content">
+          <span class="showcase-category">Celana</span>
+          <h3 class="showcase-title">Celana Sweet Dry Curve</h3>
+          <div class="showcase-rating">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </div>
+          <div class="price-box">
+            <p class="price">Rp 399.000</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+
+  </div>
+</div>
+  </main>
+
+  <footer>
+
+    <div class="footer-category">
+
+      <div class="container">
+
+        <h2 class="footer-category-title">Brand directory</h2>
+
+        <div class="footer-category-box">
+
+          <h3 class="category-box-title">Fashion :</h3>
+
+          <a href="#" class="footer-category-link">T-shirt</a>
+          <a href="#" class="footer-category-link">Shirts</a>
+          <a href="#" class="footer-category-link">shorts & jeans</a>
+          <a href="#" class="footer-category-link">jacket</a>
+          <a href="#" class="footer-category-link">dress & frock</a>
+          <a href="#" class="footer-category-link">innerwear</a>
+          <a href="#" class="footer-category-link">hosiery</a>
+
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">footwear :</h3>
+        
+          <a href="#" class="footer-category-link">sport</a>
+          <a href="#" class="footer-category-link">formal</a>
+          <a href="#" class="footer-category-link">Boots</a>
+          <a href="#" class="footer-category-link">casual</a>
+          <a href="#" class="footer-category-link">cowboy shoes</a>
+          <a href="#" class="footer-category-link">safety shoes</a>
+          <a href="#" class="footer-category-link">Party wear shoes</a>
+          <a href="#" class="footer-category-link">Branded</a>
+          <a href="#" class="footer-category-link">Firstcopy</a>
+          <a href="#" class="footer-category-link">Long shoes</a>
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">jewellery :</h3>
+        
+          <a href="#" class="footer-category-link">Necklace</a>
+          <a href="#" class="footer-category-link">Earrings</a>
+          <a href="#" class="footer-category-link">Couple rings</a>
+          <a href="#" class="footer-category-link">Pendants</a>
+          <a href="#" class="footer-category-link">Crystal</a>
+          <a href="#" class="footer-category-link">Bangles</a>
+          <a href="#" class="footer-category-link">bracelets</a>
+          <a href="#" class="footer-category-link">nosepin</a>
+          <a href="#" class="footer-category-link">chain</a>
+          <a href="#" class="footer-category-link">Earrings</a>
+          <a href="#" class="footer-category-link">Couple rings</a>
+        </div>
+
+        <div class="footer-category-box">
+          <h3 class="category-box-title">cosmetics :</h3>
+        
+          <a href="#" class="footer-category-link">Shampoo</a>
+          <a href="#" class="footer-category-link">Bodywash</a>
+          <a href="#" class="footer-category-link">Facewash</a>
+          <a href="#" class="footer-category-link">makeup kit</a>
+          <a href="#" class="footer-category-link">liner</a>
+          <a href="#" class="footer-category-link">lipstick</a>
+          <a href="#" class="footer-category-link">prefume</a>
+          <a href="#" class="footer-category-link">Body soap</a>
+          <a href="#" class="footer-category-link">scrub</a>
+          <a href="#" class="footer-category-link">hair gel</a>
+          <a href="#" class="footer-category-link">hair colors</a>
+          <a href="#" class="footer-category-link">hair dye</a>
+          <a href="#" class="footer-category-link">sunscreen</a>
+          <a href="#" class="footer-category-link">skin loson</a>
+          <a href="#" class="footer-category-link">liner</a>
+          <a href="#" class="footer-category-link">lipstick</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-nav">
+
+      <div class="container">
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Popular Categories</h2>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Fashion</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Electronic</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Cosmetic</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Health</a>
+          </li>
+
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Watches</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Products</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Our Company</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Delivery</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Legal Notice</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Terms and conditions</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">About us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Secure payment</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+        
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Services</h2>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+        
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        
+        </ul>
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Contact</h2>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <address class="content">
+              419 State 414 Rte
+              Beaver Dams, New York(NY), 14812, USA
+            </address>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+
+            <a href="tel:+607936-8058" class="footer-nav-link">(607) 936-8058</a>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-nav-list">
+
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Follow Us</h2>
+          </li>
+
+          <li>
+            <ul class="social-link">
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <div class="container">
+
+        <img src="/assets/images/payment.png" alt="payment method" class="payment-img">
+
+        <p class="copyright">
+          Copyright &copy; <a href="#">Anon</a> all rights reserved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script src="/assets/js/script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
