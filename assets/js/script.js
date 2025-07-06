@@ -149,3 +149,36 @@ document.querySelectorAll('.product-card').forEach(card => {
     qty++;
     qtyDisplay.textContent = qty;
   });
+
+ function lihatSemuadress() {
+    window.location.href = "produk/produk-dress.html";
+  }
+
+  function lihatSemuajaket() {
+    window.location.href = "produk/produk-jaket.html";
+  }
+
+  function lihatSemuakacamata() {
+    window.location.href = "produk/produk-kacamata.html";
+  }
+
+  function lihatSemuajeans() {
+    window.location.href = "produk/produk-jeans.html";
+  }
+
+  function lihatSemuatshirts() {
+    window.location.href = "produk/produk-tshirts.html";
+  }
+
+  function lihatSemuatas() {
+    window.location.href = "produk/produk-tas.html";
+  }
+
+  function lihatSemuajam() {
+    window.location.href = "produk/produk-jam.html";
+  }
+
+  function lihatSemuatopi() {
+    window.location.href = "produk/produk-topi.html";
+  }
+
