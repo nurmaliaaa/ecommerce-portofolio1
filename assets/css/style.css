@@ -945,7 +945,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 
 .sidebar .price-box del {
   color: var(--sonic-silver);
-  font-size: 5px;
+  font-size: px;
 }
 
 .sidebar .price-box .price {
@@ -1019,17 +1019,20 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 5px;
 }
 
 .product-minimal .price {
   font-size: var(--fs-4);
   font-weight: var(--weight-700);
   color: var(--salmon-pink);
+   font-size: 5px;
 }
 
 .product-minimal .price-box del {
   font-size: var(--fs-5);
   color: var(--sonic-silver);
+   font-size: 5px;
 }
 
 
@@ -1097,6 +1100,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
+   font-size: 5px;
 }
 
 .product-featured .price {
@@ -1330,6 +1334,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   font-size: var(--fs-7);
   color: var(--eerie-black);
   margin-bottom: 10px;
+   font-size: 5px;
 }
 
 .product-grid .price { font-weight: var(--weight-700); }
@@ -2778,6 +2783,7 @@ footer {
 
     .price-box {
       margin-bottom: 1rem;
+       font-size: 3px;
     }
 
     .price-new {

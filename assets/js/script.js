@@ -100,7 +100,8 @@ document.querySelectorAll('.dropdown-header').forEach(header => {
   });
 });
 
-document.querySelectorAll('.product-card').forEach(card => {
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', () => {
       const targetUrl = card.dataset.href;
       if (targetUrl) {
@@ -108,6 +109,7 @@ document.querySelectorAll('.product-card').forEach(card => {
       }
     });
   });
+});
 
    function changeImage(imgElement) {
     const main = document.getElementById("mainImage");
@@ -150,35 +152,8 @@ document.querySelectorAll('.product-card').forEach(card => {
     qtyDisplay.textContent = qty;
   });
 
- function lihatSemuadress() {
-    window.location.href = "produk/produk-dress.html";
-  }
-
   function lihatSemuajaket() {
     window.location.href = "produk/produk-jaket.html";
   }
 
-  function lihatSemuakacamata() {
-    window.location.href = "produk/produk-kacamata.html";
-  }
-
-  function lihatSemuajeans() {
-    window.location.href = "produk/produk-jeans.html";
-  }
-
-  function lihatSemuatshirts() {
-    window.location.href = "produk/produk-tshirts.html";
-  }
-
-  function lihatSemuatas() {
-    window.location.href = "produk/produk-tas.html";
-  }
-
-  function lihatSemuajam() {
-    window.location.href = "produk/produk-jam.html";
-  }
-
-  function lihatSemuatopi() {
-    window.location.href = "produk/produk-topi.html";
-  }
-
+  
